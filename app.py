@@ -5,7 +5,25 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
+####
+import os
 
+NLTK_DATA_DIR = "/opt/render/nltk_data"
+os.makedirs(NLTK_DATA_DIR, exist_ok=True)
+nltk.data.path.append(NLTK_DATA_DIR)
+
+for pkg, path in [
+    ("punkt", "tokenizers/punkt"),
+    ("punkt_tab", "tokenizers/punkt_tab"),
+    ("stopwords", "corpora/stopwords"),
+]:
+    try:
+        nltk.data.find(path)
+    except LookupError:
+        nltk.download(pkg, download_dir=NLTK_DATA_DIR)
+
+
+####
 st.set_page_config(
     page_title="Spam Classifier",
     page_icon="📧",
