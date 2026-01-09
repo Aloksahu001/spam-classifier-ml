@@ -33,7 +33,7 @@ tfidf = pickle.load(open("vectorizer.pkl", "rb"))
 model = pickle.load(open("model.pkl", "rb"))
 
 
-st.sidebar.title("📊 Project Info")
+st.sidebar.title("Project Info")
 st.sidebar.markdown("""
 **Spam Detection App**  
 Built using:
@@ -49,23 +49,23 @@ st.sidebar.info("This app classifies messages as **Spam** or **Not Spam**")
 
 
 st.markdown(
-    "<h1 style='text-align: center;'>📧 Email / SMS Spam Classifier</h1>",
+    "<h1 style='text-align: center;'>Email / SMS Spam Classifier</h1>",
     unsafe_allow_html=True
 )
 
 st.write("Paste a message below and click **Predict**")
 
 input_sms = st.text_area(
-    "✍️ Enter your message",
+    "Enter your message",
     height=150,
     placeholder="Type your email or SMS here..."
 )
 
 
-if st.button("🔍 Predict", use_container_width=True):
+if st.button("Predict", use_container_width=True):
 
     if input_sms.strip() == "":
-        st.warning("⚠️ Please enter a message")
+        st.warning("Please enter a message")
     else:
         transformed_sms = transform_text(input_sms)
         vector_input = tfidf.transform([transformed_sms])
@@ -76,10 +76,10 @@ if st.button("🔍 Predict", use_container_width=True):
         st.markdown("---")
 
         if result == 1:
-            st.error("🚨 **SPAM MESSAGE DETECTED**")
+            st.error("**SPAM MESSAGE DETECTED**")
             st.metric("Spam Probability", f"{prob[1]*100:.2f}%")
         else:
-            st.success("✅ **THIS MESSAGE IS NOT SPAM**")
+            st.success("**THIS MESSAGE IS NOT SPAM**")
             st.metric("Not Spam Probability", f"{prob[0]*100:.2f}%")
 
 
