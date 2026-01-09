@@ -11,6 +11,7 @@ st.set_page_config(
     page_icon="📧",
     layout="centered"
 )
+nltk.download('punkt_tab')
 nltk.download('punkt')
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
